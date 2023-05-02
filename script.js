@@ -10,13 +10,16 @@ $(document).ready(function () {
                 $(".thumbnail").attr("src" , my_meals[0].strMealThumb )
                 $(".dish-region").text(my_meals[0].strArea)
                 $(".dish-category").text(my_meals[0].strCategory)
-                $(".result-text").text(my_meals[0].strInstructions)
+                var replaced_reipe = my_meals[0].strInstructions.replaceAll("\n", "<br> <br>");
+                console.log(replaced_reipe)
+                $(".result-text").html(replaced_reipe)
                 for (var i = 1; i <= 20; i++) {
                     var ingredient = my_meals[0]["strIngredient" + i];
                     $(".list-1").append("<li>" + ingredient + "</li>");
                 }    
                 $(".list-1 li:empty").remove();
                 $(".ingridient-thumbnail-section").fadeIn("fast")
+                // console.log(my_meals)
             })
     }
     function show_loader(){
