@@ -5,7 +5,7 @@ $(document).ready(function () {
         var url = "https://www.themealdb.com/api/json/v1/1/search.php?s=" +user_input
         $.get(url)
             .done(function (data) {
-                $(".spinner").hide()
+                hide_loader()
                 var my_meals = data.meals
                 $(".thumbnail").attr("src" , my_meals[0].strMealThumb )
                 $(".dish-region").text(my_meals[0].strArea)
@@ -19,13 +19,19 @@ $(document).ready(function () {
                 $(".ingridient-thumbnail-section").fadeIn("fast")
             })
     }
+    function show_loader(){
+        $(".loading-animation").css("display", "flex");
+    }
+    function hide_loader(){
+        $(".loading-animation").hide();
+    }
     $(".search-btn").click(function(){
-        $(".spinner").show()
+        show_loader()
         data_provider()
     });
     $(".dish-input").keydown(function(e){
         if(e.keyCode == 13){
-            $(".spinner").show()
+            show_loader()
             data_provider()
         }
     });
