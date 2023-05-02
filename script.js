@@ -7,19 +7,26 @@ $(document).ready(function () {
             .done(function (data) {
                 hide_loader()
                 var my_meals = data.meals
-                $(".thumbnail").attr("src" , my_meals[0].strMealThumb )
-                $(".dish-region").text(my_meals[0].strArea)
-                $(".dish-category").text(my_meals[0].strCategory)
-                var replaced_reipe = my_meals[0].strInstructions.replaceAll("\n", "<br> <br> ");
-                var video_url = my_meals[0].strYoutube.replace("watch?v=", "embed/")
-                $("iframe").attr("src" , video_url) 
-                $(".result-text").html(replaced_reipe)
-                for (var i = 1; i <= 20; i++) {
-                    var ingredient = my_meals[0]["strIngredient" + i];
-                    $(".list-1").append("<li>" + ingredient + "</li>");
-                }    
-                $(".list-1 li:empty").remove();
-                $(".ingridient-thumbnail-section").fadeIn("fast")
+                if(my_meals == undefined){
+                    alert("Sorry dish not found")
+                    $(".ingridient-thumbnail-section,.recipe-section").hide()
+                }
+                else{
+                    $(".list-1").html("")
+                    $(".thumbnail").attr("src" , my_meals[0].strMealThumb )
+                    $(".dish-region").text(my_meals[0].strArea)
+                    $(".dish-category").text(my_meals[0].strCategory)
+                    var replaced_reipe = my_meals[0].strInstructions.replaceAll("\n", "<br> <br> ");
+                    var video_url = my_meals[0].strYoutube.replace("watch?v=", "embed/")
+                    $("iframe").attr("src" , video_url) 
+                    $(".result-text").html(replaced_reipe)
+                    for (var i = 1; i <= 20; i++) {
+                        var ingredient = my_meals[0]["strIngredient" + i];
+                        $(".list-1").append("<li>" + ingredient + "</li>");
+                    }    
+                    $(".list-1 li:empty").remove();
+                    $(".ingridient-thumbnail-section").fadeIn("fast");
+                }                
             })
     }
     function show_loader(){
@@ -29,11 +36,13 @@ $(document).ready(function () {
         $(".loading-animation").hide();
     }
     $(".search-btn").click(function(){
+        $(".recipe-section").hide()
         show_loader()
         data_provider()
     });
     $(".dish-input").keydown(function(e){
         if(e.keyCode == 13){
+            $(".recipe-section").hide()
             show_loader()
             data_provider()
         }
