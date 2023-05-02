@@ -50,6 +50,54 @@
             font-family: sans-serif;
             line-height: 35px;
         }
+        img{
+            max-width: 50%;
+        }
+        .ingridient-thumbnail-data{
+            text-align: center;
+        }
+        .dish-type{
+            margin:0 auto;
+            width: 25%;
+            background-color: rgb(250,192,42);
+            padding: 20px;
+            font-family: system-ui;
+            font-weight: 900;
+        }
+        .ingridients{
+            font-size: 20px;
+            font-family: sans-serif;
+            padding-left: 20px;
+            margin-top: 30px;
+        }
+        .recipe-viewer{
+            text-align: end;
+        }
+        .view-button{
+            background-color: rgb(250,192,42);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-family: sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .ingridient-thumbnail-section,.recipe-section{
+            display: none; 
+        }
+        .windows-waala-btn span{
+            background-color: rgb(250,192,42);
+            padding: 10px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        .windows-waala-btn{
+            text-align: end;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +107,31 @@
             <button class="search-btn">Search</button>
         </div>
         <div class="result-section">
-            <p class="result-text"></p>
+            <div class="ingridient-thumbnail-section">
+                <div class="ingridient-thumbnail-data">
+                    <img class="thumbnail" src="">
+                    <div class="dish-type">
+                        <p class="dish-region"></p>
+                        <p class="dish-category"></p>
+                    </div>
+                </div>
+                <div class="ingridients">    
+                    <ul class="list-1">
+
+                    </ul>
+                </div>
+                <div class="recipe-viewer">
+                    <button class="view-button">View recipe</button>
+                </div>
+            </div>
+            <div class="recipe-section">
+                <div class="windows-waala-btn">
+                    <div>
+                        <span>X</span>
+                    </div>
+                </div>
+                <p class="result-text"></p>
+            </div>
         </div>
     </div>
 </body>
